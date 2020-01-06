@@ -1,1 +1,47 @@
-<p>document-form works!</p>
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <form [formGroup]="mainForm" (ngSubmit)="onSubmit(mainForm)">
+        <div fxLayout="column" gdGap="10px">
+            <div formArrayName="items">
+                <div *ngFor="let item of items.controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <div fxLayout="row">
+                            <mat-form-field>
+                                <input matInput placeholder="First Name" formControlName="firstName">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Last Name" formControlName="lastName">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Percentage" formControlName="percentage" type="number">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <div class="upload-btn-wrapper">
+                                <button
+                                    [ngStyle]="{color: submitted && item.controls.fileRg.hasError('required') ? 'red': ''}"
+                                    class="btn" type="button"
+                                    (click)="fileInputRg.click()">{{ fileInputRg.files[0]?.name || 'Upload RG file' }}</button>
+                                <input hidden (change)="onFileChangeRg(i, $event)" #fileInputRg type="file"
+                                    formControlName="fileRg" />
+                            </div>
+                            <div class="upload-btn-wrapper">
+                                <button
+                                    [ngStyle]="{color: submitted && item.controls.fileCpf.hasError('required') ? 'red': ''}"
+                                    class="btn" type="button"
+                                    (click)="fileInputCpf.click()">{{ fileInputCpf.files[0]?.name || 'Upload CPF file' }}</button>
+                                <input hidden (change)="onFileChangeCpf(i, $event)" #fileInputCpf type="file"
+                                    formControlName="fileCpf" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <button fxFlex="100%" type="button" mat-raised-button (click)="addItem()">Add</button>
+            </div>
+            <div fxLayout="row">
+                <button fxFlex="100%" type="submit" mat-raised-button>Send</button>
+            </div>
+        </div>
+    </form>
+</div>
