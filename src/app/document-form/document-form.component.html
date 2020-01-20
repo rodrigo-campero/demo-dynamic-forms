@@ -18,19 +18,17 @@
                         <div fxLayout="row">
                             <div class="upload-btn-wrapper">
                                 <button
-                                    [ngStyle]="{color: submitted && item.controls.fileRg.hasError('required') ? 'red': ''}"
+                                    [ngStyle]="{color: submitted && item.controls.fileNameRg.hasError('required') ? 'red': ''}"
                                     class="btn" type="button"
                                     (click)="fileInputRg.click()">{{ fileInputRg.files[0]?.name || 'Upload RG file' }}</button>
-                                <input hidden (change)="onFileChangeRg(i, $event)" #fileInputRg type="file"
-                                    formControlName="fileRg" />
+                                <input hidden (change)="onFileChangeRg(i, $event)" #fileInputRg type="file" />
                             </div>
                             <div class="upload-btn-wrapper">
                                 <button
-                                    [ngStyle]="{color: submitted && item.controls.fileCpf.hasError('required') ? 'red': ''}"
+                                    [ngStyle]="{color: submitted && item.controls.fileNameCpf.hasError('required') ? 'red': ''}"
                                     class="btn" type="button"
                                     (click)="fileInputCpf.click()">{{ fileInputCpf.files[0]?.name || 'Upload CPF file' }}</button>
-                                <input hidden (change)="onFileChangeCpf(i, $event)" #fileInputCpf type="file"
-                                    formControlName="fileCpf" />
+                                <input hidden (change)="onFileChangeCpf(i, $event)" #fileInputCpf type="file" />
                             </div>
                         </div>
                     </div>

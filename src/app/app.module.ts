@@ -14,11 +14,13 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { DocumentFormComponent } from './document-form/document-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { YearFormComponent } from './year-form/year-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DocumentFormComponent
+    DocumentFormComponent,
+    YearFormComponent
   ],
   imports: [
     BrowserModule,

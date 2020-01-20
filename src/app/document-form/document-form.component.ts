@@ -40,10 +40,10 @@ export class DocumentFormComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       percentage: ['', [Validators.required, Validators.max(100)]],
-      fileNameRg: [''],
-      fileRg: ['', Validators.required],
-      fileNameCpf: [''],
-      fileCpf: ['', Validators.required]
+      fileNameRg: ['', Validators.required],
+      fileRg: [''],
+      fileNameCpf: ['',  Validators.required],
+      fileCpf: ['']
     });
   }
 
@@ -60,12 +60,11 @@ export class DocumentFormComponent implements OnInit {
 
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
-      this.items.value[index].fileNameRg = file.name;
+      this.items.controls[index].get('fileNameRg').setValue(file.name);
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        this.items.value[index].fileRg = reader.result;
-        console.log(this.items.value[index].fileRg);
+        this.items.controls[index].get('fileRg').setValue(reader.result);
       };
     }
   }
@@ -75,12 +74,11 @@ export class DocumentFormComponent implements OnInit {
 
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
-      this.items.value[index].fileNameCpf = file.name;
+      this.items.controls[index].get('fileNameCpf').setValue(file.name);
       reader.readAsDataURL(file);
 
-      reader.onload = () => {
-        this.items.value[index].fileCpf = reader.result;
-        console.log(this.items.value[index].fileCpf);
+      reader.onload = () => {        
+        this.items.controls[index].get('fileCpf').setValue(reader.result);
       };
     }
   }
